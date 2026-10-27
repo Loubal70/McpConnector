@@ -49,6 +49,12 @@ final class ServerRegistry
      */
     public const TOOLS_FILTER = 'mcp_connector_server_tools';
 
+    public const INSTRUCTIONS_FILTER = 'mcp_connector_server_instructions';
+
+    public const PROMPTS_FILTER = 'mcp_connector_server_prompts';
+
+    public const RESOURCES_FILTER = 'mcp_connector_server_resources';
+
     /**
      * @param Settings $settings Resolved plugin configuration.
      */
@@ -113,18 +119,14 @@ final class ServerRegistry
                 __('%s MCP server', 'amphibee-mcp-connector'),
                 get_bloginfo('name'),
             ),
-            sprintf(
-                /* translators: %s: the site URL. */
-                __('Manage content on the WordPress site at %s.', 'amphibee-mcp-connector'),
-                home_url(),
-            ),
+            $this->instructions(),
             'v1.0.0',
             [HttpTransport::class],
             ErrorLogMcpErrorHandler::class,
             NullMcpObservabilityHandler::class,
             $tools,
-            [],
-            [],
+            $this->resources(),
+            $this->prompts(),
             $this->checkPermission(...),
         );
 
@@ -154,6 +156,50 @@ final class ServerRegistry
         unset($request);
 
         return current_user_can($this->settings->requiredCapability);
+    }
+
+    /**
+     * Returns the server description, which the adapter sends to clients as MCP `instructions`.
+     */
+    private function instructions(): string
+    {
+        $defaultInstructions = sprintf(
+            /* translators: %s: the site URL. */
+            __('Manage content on the WordPress site at %s.', 'amphibee-mcp-connector'),
+            home_url(),
+        );
+
+        $instructions = apply_filters(self::INSTRUCTIONS_FILTER, $defaultInstructions);
+
+        if (!is_string($instructions) || trim($instructions) === '') {
+            return $defaultInstructions;
+        }
+
+        return $instructions;
+    }
+
+    /**
+     * Returns the filtered prompts, left unvalidated: the adapter skips an unusable one.
+     *
+     * @return list<mixed> Ability names, McpPrompt instances or prompt builders.
+     */
+    private function prompts(): array
+    {
+        $prompts = apply_filters(self::PROMPTS_FILTER, []);
+
+        return is_array($prompts) ? array_values($prompts) : [];
+    }
+
+    /**
+     * Returns the filtered resources, left unvalidated: the adapter skips an unusable one.
+     *
+     * @return list<mixed> Ability names or McpResource instances.
+     */
+    private function resources(): array
+    {
+        $resources = apply_filters(self::RESOURCES_FILTER, []);
+
+        return is_array($resources) ? array_values($resources) : [];
     }
 
     /**
