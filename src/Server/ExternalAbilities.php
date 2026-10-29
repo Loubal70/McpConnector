@@ -27,17 +27,13 @@ final class ExternalAbilities
 {
     /**
      * Filter through which the published third-party ability list can be adjusted.
-     *
-     * @var string
      */
-    public const SELECTION_FILTER = 'mcp_connector_external_abilities';
+    public const string SELECTION_FILTER = 'mcp_connector_external_abilities';
 
     /**
      * Filter through which a provider profile can be declared.
-     *
-     * @var string
      */
-    public const PROFILES_FILTER = 'mcp_connector_provider_profiles';
+    public const string PROFILES_FILTER = 'mcp_connector_provider_profiles';
 
     /**
      * Namespaces this plugin will never publish, whatever the configuration says.
@@ -52,7 +48,7 @@ final class ExternalAbilities
      *
      * @var list<string>
      */
-    private const NEVER_PUBLISH = ['mcp-adapter'];
+    private const array NEVER_PUBLISH = ['mcp-adapter'];
 
     /**
      * @param Settings $settings Resolved plugin configuration.

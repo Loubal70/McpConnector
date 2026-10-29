@@ -20,10 +20,8 @@ final class Client
 {
     /**
      * Authentication method for clients that hold no secret and rely on PKCE alone.
-     *
-     * @var string
      */
-    public const AUTH_METHOD_NONE = 'none';
+    public const string AUTH_METHOD_NONE = 'none';
 
     /**
      * @param string       $id             Client identifier, generated at registration.
@@ -60,7 +58,7 @@ final class Client
             id: (string) ($stored['id'] ?? ''),
             secretHash: (string) ($stored['secret_hash'] ?? ''),
             name: (string) ($stored['name'] ?? ''),
-            redirectUris: array_values(array_map('strval', (array) ($stored['redirect_uris'] ?? []))),
+            redirectUris: array_values(array_map(strval(...), (array) ($stored['redirect_uris'] ?? []))),
             authMethod: (string) ($stored['auth_method'] ?? 'client_secret_post'),
             createdAt: (int) ($stored['created_at'] ?? 0),
             selfRegistered: (bool) ($stored['self_registered'] ?? false),

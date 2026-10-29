@@ -32,22 +32,24 @@ defined('ABSPATH') || exit;
  * The panels are rendered directly rather than through the Settings API. That
  * API produces one flat form-table, which is exactly the shape this screen was
  * rewritten to stop being.
+ *
+ * The screen takes no configuration, deliberately. It is constructed on
+ * `plugins_loaded` but renders much later, and `mcp_connector_settings` may
+ * have been filtered in between, so {@see self::render()} reads
+ * `Settings::current()` at render time instead. An injected instance would
+ * silently be the stale one.
  */
 final class SettingsPage
 {
     /**
      * Menu slug of the settings page.
-     *
-     * @var string
      */
-    public const MENU_SLUG = 'mcp-connector';
+    public const string MENU_SLUG = 'mcp-connector';
 
     /**
      * Identifier of the configuration form.
-     *
-     * @var string
      */
-    public const SETTINGS_FORM = 'mcpc-settings';
+    public const string SETTINGS_FORM = 'mcpc-settings';
 
     /**
      * Identifier of the manual client creation form.
@@ -56,34 +58,26 @@ final class SettingsPage
      * controls pointing at it by id. Nesting it inside the configuration form —
      * where its fields visually belong — is invalid HTML, and browsers respond
      * by silently discarding the inner form altogether.
-     *
-     * @var string
      */
-    public const CLIENT_FORM = 'mcpc-create-client';
+    public const string CLIENT_FORM = 'mcpc-create-client';
 
     /**
      * Nonce action guarding configuration saves.
      *
      * Public because the setup assistant submits against it too: its second step
      * writes two of the same settings, through the same verified handler.
-     *
-     * @var string
      */
-    public const NONCE_SETTINGS = 'mcp_connector_save_settings';
+    public const string NONCE_SETTINGS = 'mcp_connector_save_settings';
 
     /**
      * Nonce action guarding client creation.
-     *
-     * @var string
      */
-    private const NONCE_CREATE_CLIENT = 'mcp_connector_create_client';
+    private const string NONCE_CREATE_CLIENT = 'mcp_connector_create_client';
 
     /**
      * Nonce action guarding client deletion.
-     *
-     * @var string
      */
-    private const NONCE_DELETE_CLIENT = 'mcp_connector_delete_client';
+    private const string NONCE_DELETE_CLIENT = 'mcp_connector_delete_client';
 
     /**
      * Transient prefix holding a newly-created client secret for one page load.
@@ -92,22 +86,8 @@ final class SettingsPage
      * through a short-lived transient rather than a query parameter, because a
      * query parameter ends up in the browser history, in the referrer and in the
      * access log.
-     *
-     * @var string
      */
-    private const SECRET_TRANSIENT = 'mcp_connector_new_secret_';
-
-    /**
-     * This screen takes no configuration, deliberately.
-     *
-     * It is constructed on `plugins_loaded` but renders much later, and
-     * `mcp_connector_settings` may have been filtered in between — so
-     * {@see self::render()} reads `Settings::current()` at render time instead.
-     * An injected instance would silently be the stale one.
-     */
-    public function __construct()
-    {
-    }
+    private const string SECRET_TRANSIENT = 'mcp_connector_new_secret_';
 
     /**
      * Attach the admin hooks.
@@ -202,9 +182,7 @@ final class SettingsPage
     {
         remove_action('in_admin_header', 'wp_admin_bar_render', 0);
 
-        add_filter('admin_body_class', static function (string $classes): string {
-            return $classes . ' ' . Wizard::BODY_CLASS . ' ';
-        });
+        add_filter('admin_body_class', static fn (string $classes): string => $classes . ' ' . Wizard::BODY_CLASS . ' ');
 
         // Notices are the reason this matters rather than being cosmetic. A
         // sequence that says "this is the one thing stopping you" reads as a lie
@@ -326,6 +304,7 @@ final class SettingsPage
             check_admin_referer(self::NONCE_DELETE_CLIENT);
             $this->deleteClient(sanitize_text_field(wp_unslash((string) $_GET['mcp_connector_delete_client'])));
         }
+
         // phpcs:enable WordPress.Security.NonceVerification.Missing
 
         $this->maybeSendToSetup();
@@ -352,6 +331,7 @@ final class SettingsPage
         if ($page !== self::MENU_SLUG || isset($_GET['tab'])) {
             return;
         }
+
         // phpcs:enable WordPress.Security.NonceVerification.Recommended
 
         foreach ((new TokenRepository())->liveAccessTokenSummaries() as $summary) {
@@ -376,12 +356,12 @@ final class SettingsPage
         // stray backslash rather than carrying it through.
         // phpcs:disable WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput -- Verified by the caller; sanitize_key() inside the array_map().
         $groups = array_map(
-            'sanitize_key',
-            array_map('strval', (array) ($_POST['enabled_groups'] ?? [])),
+            sanitize_key(...),
+            array_map(strval(...), (array) ($_POST['enabled_groups'] ?? [])),
         );
 
         $postTypes = array_values(array_intersect(
-            array_map('sanitize_key', array_map('strval', (array) ($_POST['addressable_post_types'] ?? []))),
+            array_map(sanitize_key(...), array_map(strval(...), (array) ($_POST['addressable_post_types'] ?? []))),
             array_map(static fn (\WP_Post_Type $t): string => $t->name, PostTypes::offerable()),
         ));
 
@@ -448,7 +428,7 @@ final class SettingsPage
         // on the next line, so an unrecognised name cannot survive — which is a
         // stricter filter than any sanitiser would be.
         // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput -- Verified by the caller; intersected against the offered set below.
-        $submitted = array_map('strval', (array) ($_POST['external_abilities'] ?? []));
+        $submitted = array_map(strval(...), (array) ($_POST['external_abilities'] ?? []));
 
         return array_values(array_intersect($submitted, $offered));
     }

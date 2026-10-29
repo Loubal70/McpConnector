@@ -109,7 +109,7 @@ jobs:
         run: |
           cd build/mcp-connector
           failed=0
-          for forbidden in tests phpunit.xml.dist phpstan.neon.dist phpcs.xml.dist pint.json .github .git .gitignore .gitattributes .editorconfig composer.lock CONTRIBUTING.md SECURITY.md .wordpress-org; do
+          for forbidden in tests phpunit.xml.dist phpstan.neon.dist phpcs.xml.dist pint.json .github .git .gitignore .gitattributes .editorconfig composer.lock CONTRIBUTING.md SECURITY.md .wordpress-org rector.php .harness.json AGENTS.md api-surface.json composer-dependency-analyser.php .claude; do
             if [[ -e "$forbidden" ]]; then
               echo "::error::${forbidden} is present in the build"
               failed=1

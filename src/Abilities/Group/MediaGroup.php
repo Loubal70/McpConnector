@@ -31,10 +31,8 @@ final class MediaGroup implements AbilityGroup
 {
     /**
      * Stable group key stored in the settings option.
-     *
-     * @var string
      */
-    public const KEY = 'media';
+    public const string KEY = 'media';
 
     /**
      * {@inheritDoc}

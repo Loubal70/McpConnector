@@ -26,10 +26,8 @@ final class TaxonomyGroup implements AbilityGroup
 {
     /**
      * Stable group key stored in the settings option.
-     *
-     * @var string
      */
-    public const KEY = 'taxonomy';
+    public const string KEY = 'taxonomy';
 
     /**
      * {@inheritDoc}

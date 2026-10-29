@@ -37,31 +37,23 @@ final class Endpoints
 {
     /**
      * REST namespace the OAuth routes are registered under.
-     *
-     * @var string
      */
-    public const REST_NAMESPACE = 'mcp-connector/v1';
+    public const string REST_NAMESPACE = 'mcp-connector/v1';
 
     /**
      * Path of the protected resource metadata document, relative to the site root.
-     *
-     * @var string
      */
-    public const PROTECTED_RESOURCE_PATH = '.well-known/oauth-protected-resource';
+    public const string PROTECTED_RESOURCE_PATH = '.well-known/oauth-protected-resource';
 
     /**
      * Path of the authorization server metadata document, relative to the site root.
-     *
-     * @var string
      */
-    public const SERVER_METADATA_PATH = '.well-known/oauth-authorization-server';
+    public const string SERVER_METADATA_PATH = '.well-known/oauth-authorization-server';
 
     /**
      * Path of the authorization endpoint, relative to the site root.
-     *
-     * @var string
      */
-    public const AUTHORIZE_PATH = 'oauth/authorize';
+    public const string AUTHORIZE_PATH = 'oauth/authorize';
 
     /**
      * Not instantiable: every member is a static factory.

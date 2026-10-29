@@ -30,24 +30,18 @@ final class ServerRegistry
 {
     /**
      * Identifier of the server this plugin creates.
-     *
-     * @var string
      */
-    public const SERVER_ID = 'mcp-connector';
+    public const string SERVER_ID = 'mcp-connector';
 
     /**
      * REST namespace the MCP Adapter mounts servers under.
-     *
-     * @var string
      */
-    public const ROUTE_NAMESPACE = 'mcp';
+    public const string ROUTE_NAMESPACE = 'mcp';
 
     /**
      * Filter through which the published tool list can be adjusted.
-     *
-     * @var string
      */
-    public const TOOLS_FILTER = 'mcp_connector_server_tools';
+    public const string TOOLS_FILTER = 'mcp_connector_server_tools';
 
     /**
      * @param Settings $settings Resolved plugin configuration.
@@ -188,7 +182,7 @@ final class ServerRegistry
         // deactivated since the selection was saved costs its own tools and
         // nothing else.
         return array_values(array_unique(array_filter(
-            array_map('strval', $tools),
+            array_map(strval(...), $tools),
             static fn (string $name): bool => wp_has_ability($name),
         )));
     }

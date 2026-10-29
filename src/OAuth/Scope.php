@@ -24,17 +24,13 @@ final class Scope
 {
     /**
      * Permission to read the site.
-     *
-     * @var string
      */
-    public const READ = 'read';
+    public const string READ = 'read';
 
     /**
      * Permission to change the site.
-     *
-     * @var string
      */
-    public const WRITE = 'write';
+    public const string WRITE = 'write';
 
     /**
      * Scope of the token that authenticated the current request.

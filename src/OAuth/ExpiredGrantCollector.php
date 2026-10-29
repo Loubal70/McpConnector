@@ -24,10 +24,8 @@ final class ExpiredGrantCollector
 {
     /**
      * Cron hook that performs the sweep.
-     *
-     * @var string
      */
-    public const CRON_HOOK = 'mcp_connector_purge_expired_grants';
+    public const string CRON_HOOK = 'mcp_connector_purge_expired_grants';
 
     /**
      * Attach the scheduling and cleanup hooks.
