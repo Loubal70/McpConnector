@@ -7,7 +7,7 @@
  * Author URI: https://amphibee.fr
  * Requires PHP: 8.3
  * Requires at least: 6.9
- * License: GPL-2.0-or-later
+ * License: MIT
  * Text Domain: amphibee-mcp-connector
  * Domain Path: /languages
  *
