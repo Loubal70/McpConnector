@@ -2,7 +2,7 @@
     "name": "pollora/mcp-connector",
     "description": "Expose WordPress content management as MCP tools, with a built-in OAuth 2.1 provider so remote clients such as Claude can connect.",
     "type": "wordpress-plugin",
-    "license": "GPL-2.0-or-later",
+    "license": "MIT",
     "keywords": [
         "wordpress",
         "wordpress-plugin",

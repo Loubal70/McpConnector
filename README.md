@@ -531,4 +531,4 @@ Contributions are welcome: see the [contributing guide](CONTRIBUTING.md). Report
 
 ## License
 
-MCP Connector is open-source software licensed under the [GPL-2.0-or-later](LICENSE). © [RuBee group](https://rubee.group)
+MCP Connector is open-source software licensed under the [MIT license](LICENSE). © [RuBee group](https://rubee.group)

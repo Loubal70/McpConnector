@@ -5,6 +5,14 @@ All notable changes to this project are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and
 this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Changed
+
+- The plugin is licensed under the MIT license instead of GPL-2.0-or-later,
+  which stays compatible with WordPress's GPL. Releases up to 1.2.2 keep the
+  license they were published under.
+
 ## 1.2.2
 
 ### Fixed
