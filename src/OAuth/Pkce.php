@@ -22,10 +22,8 @@ final class Pkce
 {
     /**
      * The only challenge method this provider accepts.
-     *
-     * @var string
      */
-    public const METHOD = 'S256';
+    public const string METHOD = 'S256';
 
     /**
      * Not instantiable: every member is a static helper.

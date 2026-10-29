@@ -26,10 +26,8 @@ final class ClientGuides
 {
     /**
      * Filter through which a site can add or amend a walkthrough.
-     *
-     * @var string
      */
-    public const FILTER = 'mcp_connector_client_guides';
+    public const string FILTER = 'mcp_connector_client_guides';
 
     /**
      * Redirect URIs used by the Claude applications.
@@ -40,7 +38,7 @@ final class ClientGuides
      *
      * @var list<string>
      */
-    public const CLAUDE_REDIRECT_URIS = [
+    public const array CLAUDE_REDIRECT_URIS = [
         'https://claude.ai/api/mcp/auth_callback',
         'https://claude.com/api/mcp/auth_callback',
     ];

@@ -32,10 +32,8 @@ final class ContentGroup implements AbilityGroup
 {
     /**
      * Stable group key stored in the settings option.
-     *
-     * @var string
      */
-    public const KEY = 'content';
+    public const string KEY = 'content';
 
     /**
      * {@inheritDoc}

@@ -31,17 +31,13 @@ final class RegistrationController
      * The name is rendered on the consent screen, where an over-long or
      * multi-line value would be used to push the actual permissions being
      * granted out of view.
-     *
-     * @var int
      */
-    private const MAX_NAME_LENGTH = 100;
+    private const int MAX_NAME_LENGTH = 100;
 
     /**
      * Most redirect URIs accepted for one client.
-     *
-     * @var int
      */
-    private const MAX_REDIRECT_URIS = 10;
+    private const int MAX_REDIRECT_URIS = 10;
 
     /**
      * @param Settings         $settings Resolved plugin configuration.
@@ -127,7 +123,7 @@ final class RegistrationController
     private function readRedirectUris(array $body): array
     {
         $candidates = array_slice(
-            array_map('strval', (array) ($body['redirect_uris'] ?? [])),
+            array_map(strval(...), (array) ($body['redirect_uris'] ?? [])),
             0,
             self::MAX_REDIRECT_URIS,
         );

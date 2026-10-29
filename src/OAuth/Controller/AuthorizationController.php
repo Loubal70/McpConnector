@@ -37,7 +37,7 @@ final class AuthorizationController
      *
      * @var list<string>
      */
-    private const CARRIED_PARAMS = [
+    private const array CARRIED_PARAMS = [
         'client_id',
         'redirect_uri',
         'response_type',
@@ -255,6 +255,6 @@ final class AuthorizationController
      */
     private static function withQuery(string $url, array $params): string
     {
-        return add_query_arg(array_map('rawurlencode', $params), $url);
+        return add_query_arg(array_map(rawurlencode(...), $params), $url);
     }
 }

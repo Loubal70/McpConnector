@@ -27,10 +27,8 @@ final class UserGroup implements AbilityGroup
 {
     /**
      * Stable group key stored in the settings option.
-     *
-     * @var string
      */
-    public const KEY = 'users';
+    public const string KEY = 'users';
 
     /**
      * {@inheritDoc}

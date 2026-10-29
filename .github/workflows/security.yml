@@ -20,9 +20,10 @@ permissions:
 
 jobs:
   # ---------------------------------------------------------------------------
-  # Known vulnerabilities in the dependency tree. roave/security-advisories
-  # blocks a vulnerable package at install time; this catches advisories
-  # published after the lock file was written.
+  # Known vulnerabilities in the dependency tree: this catches advisories
+  # published after the lock file was written. (roave/security-advisories is
+  # gone: it also flags the PHP version pinned in config.platform, which broke
+  # every resolution without a lock file. The harness runs composer audit too.)
   # ---------------------------------------------------------------------------
   dependencies:
     name: Dependency advisories
@@ -134,7 +135,7 @@ jobs:
           # off the server. execute-ability invokes any registered ability by
           # name, so a filterable list would make every curation decision
           # decorative.
-          if ! grep -q 'private const NEVER_PUBLISH' src/Server/ExternalAbilities.php; then
+          if ! grep -qE 'private const (array )?NEVER_PUBLISH' src/Server/ExternalAbilities.php; then
             echo '::error::NEVER_PUBLISH is no longer a private constant'
             exit 1
           fi

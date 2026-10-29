@@ -48,10 +48,8 @@ final class ConnectionTest
 {
     /**
      * Admin-ajax action name, also used as the nonce action.
-     *
-     * @var string
      */
-    public const ACTION = 'mcp_connector_test';
+    public const string ACTION = 'mcp_connector_test';
 
     /**
      * Redirect URI registered for the throwaway client.
@@ -60,17 +58,13 @@ final class ConnectionTest
      * out of the `Location` header rather than chasing it. Loopback because
      * RFC 8252 blesses it and the registration endpoint therefore accepts it on
      * a site that is itself served over plain HTTP — which local installs are.
-     *
-     * @var string
      */
-    private const REDIRECT_URI = 'http://127.0.0.1/mcp-connector/self-test';
+    private const string REDIRECT_URI = 'http://127.0.0.1/mcp-connector/self-test';
 
     /**
      * The protocol version the test announces.
-     *
-     * @var string
      */
-    private const PROTOCOL_VERSION = '2025-06-18';
+    private const string PROTOCOL_VERSION = '2025-06-18';
 
     /**
      * Results accumulated by the run.
@@ -356,7 +350,7 @@ final class ConnectionTest
         ];
 
         $response = wp_remote_get(
-            add_query_arg(array_map('rawurlencode', $this->params), Endpoints::authorize()),
+            add_query_arg(array_map(rawurlencode(...), $this->params), Endpoints::authorize()),
             self::requestArguments(['headers' => ['Cookie' => self::sessionCookies()]]),
         );
 

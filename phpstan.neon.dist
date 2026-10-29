@@ -1,3 +1,6 @@
+includes:
+    - vendor/pollora/harness/presets/phpstan/base.neon
+
 parameters:
     # Level 6, not max, and that is a deliberate stop rather than the finish
     # line. Levels 7 and above object to every `(string)` and `(int)` cast of a

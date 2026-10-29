@@ -27,10 +27,8 @@ final class NavigationGroup implements AbilityGroup
 {
     /**
      * Stable group key stored in the settings option.
-     *
-     * @var string
      */
-    public const KEY = 'navigation';
+    public const string KEY = 'navigation';
 
     /**
      * {@inheritDoc}

@@ -38,10 +38,8 @@ final class AbilityRegistry
 {
     /**
      * Filter through which third parties add or remove ability groups.
-     *
-     * @var string
      */
-    public const GROUPS_FILTER = 'mcp_connector_ability_groups';
+    public const string GROUPS_FILTER = 'mcp_connector_ability_groups';
 
     /**
      * Fully-qualified names of every ability registered during this request.
