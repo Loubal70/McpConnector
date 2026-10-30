@@ -18,10 +18,8 @@ final class ClientRepository
 {
     /**
      * Option holding the client map, keyed by client identifier.
-     *
-     * @var string
      */
-    public const OPTION = 'mcp_connector_oauth_clients';
+    public const string OPTION = 'mcp_connector_oauth_clients';
 
     /**
      * Register a new client and return it alongside its one-time plaintext secret.
@@ -86,8 +84,8 @@ final class ClientRepository
     public function all(): array
     {
         $clients = array_map(
-            static fn (array $stored): Client => Client::fromArray($stored),
-            array_filter($this->allRaw(), 'is_array'),
+            Client::fromArray(...),
+            array_filter($this->allRaw(), is_array(...)),
         );
 
         // usort() discards the client-identifier keys array_filter() preserved,

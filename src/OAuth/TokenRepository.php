@@ -25,24 +25,18 @@ final class TokenRepository
 {
     /**
      * Option holding issued access tokens, keyed by token hash.
-     *
-     * @var string
      */
-    public const ACCESS_OPTION = 'mcp_connector_oauth_access_tokens';
+    public const string ACCESS_OPTION = 'mcp_connector_oauth_access_tokens';
 
     /**
      * Option holding issued refresh tokens, keyed by token hash.
-     *
-     * @var string
      */
-    public const REFRESH_OPTION = 'mcp_connector_oauth_refresh_tokens';
+    public const string REFRESH_OPTION = 'mcp_connector_oauth_refresh_tokens';
 
     /**
      * How long an access token stays valid, in seconds.
-     *
-     * @var int
      */
-    public const ACCESS_TTL = HOUR_IN_SECONDS;
+    public const int ACCESS_TTL = HOUR_IN_SECONDS;
 
     /**
      * How long a refresh token stays valid, in seconds.
@@ -300,7 +294,7 @@ final class TokenRepository
         return [
             'user_id' => (int) ($record['user_id'] ?? 0),
             'client_id' => (string) ($record['client_id'] ?? ''),
-            'scopes' => array_values(array_map('strval', (array) ($record['scopes'] ?? []))),
+            'scopes' => array_values(array_map(strval(...), (array) ($record['scopes'] ?? []))),
             'expires_at' => (int) $record['expires_at'],
         ];
     }

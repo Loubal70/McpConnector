@@ -38,10 +38,8 @@ final class FieldDiscovery
      *
      * A source is a callable taking a post type slug and returning a list of
      * `['key' => string, 'label' => string, 'type' => string]` entries.
-     *
-     * @var string
      */
-    public const SOURCES_FILTER = 'mcp_connector_field_sources';
+    public const string SOURCES_FILTER = 'mcp_connector_field_sources';
 
     /**
      * Not instantiable: every member is a static helper.

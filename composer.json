@@ -2,7 +2,7 @@
     "name": "pollora/mcp-connector",
     "description": "Expose WordPress content management as MCP tools, with a built-in OAuth 2.1 provider so remote clients such as Claude can connect.",
     "type": "wordpress-plugin",
-    "license": "GPL-2.0-or-later",
+    "license": "MIT",
     "keywords": [
         "wordpress",
         "wordpress-plugin",
@@ -28,17 +28,17 @@
         "pollora/abilities": "^1.0"
     },
     "require-dev": {
+        "antecedent/patchwork": "^2.2",
         "brain/monkey": "^2.6",
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
         "laravel/pint": "^1.18",
         "mockery/mockery": "^1.6",
-        "pestphp/pest": "^3.7",
+        "pestphp/pest": "^3.8.2",
         "php-parallel-lint/php-parallel-lint": "^1.4",
         "phpcompatibility/phpcompatibility-wp": "^2.1",
-        "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "^2.1",
         "phpstan/phpstan-deprecation-rules": "^2.0",
-        "roave/security-advisories": "dev-latest",
+        "pollora/harness": "^0.1.14",
         "squizlabs/php_codesniffer": "^3.11",
         "szepeviktor/phpstan-wordpress": "^2.0",
         "wp-coding-standards/wpcs": "^3.1"
@@ -61,8 +61,7 @@
         },
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "pestphp/pest-plugin": true,
-            "phpstan/extension-installer": true
+            "pestphp/pest-plugin": true
         }
     },
     "scripts": {
@@ -81,7 +80,8 @@
             "@sniff",
             "@analyse",
             "@test"
-        ]
+        ],
+        "qa:fast": "@php vendor/bin/pollora-qa check --fast"
     },
     "scripts-descriptions": {
         "lint": "Check every PHP file for syntax errors",

@@ -5,8 +5,8 @@ Requires at least: 6.9
 Tested up to: 7.1
 Requires PHP: 8.3
 Stable tag: 1.2.2
-License: GPLv2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+License: MIT
+License URI: https://opensource.org/license/mit
 
 Exposes WordPress content management as Model Context Protocol tools, with a built-in OAuth 2.1 provider so a remote AI client can connect by URL.
 

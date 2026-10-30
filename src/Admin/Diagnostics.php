@@ -32,24 +32,18 @@ final class Diagnostics
 {
     /**
      * Every requirement is met.
-     *
-     * @var string
      */
-    public const PASS = 'pass';
+    public const string PASS = 'pass';
 
     /**
      * Worth attention, but a client can still connect.
-     *
-     * @var string
      */
-    public const WARN = 'warn';
+    public const string WARN = 'warn';
 
     /**
      * Nothing will connect until this is fixed.
-     *
-     * @var string
      */
-    public const FAIL = 'fail';
+    public const string FAIL = 'fail';
 
     /**
      * Results already established in this request.

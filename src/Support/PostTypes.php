@@ -30,10 +30,8 @@ final class PostTypes
 {
     /**
      * Filter through which the addressable set can be adjusted in code.
-     *
-     * @var string
      */
-    public const FILTER = 'mcp_connector_addressable_post_types';
+    public const string FILTER = 'mcp_connector_addressable_post_types';
 
     /**
      * Post types never offered, whatever the configuration says.
@@ -44,7 +42,7 @@ final class PostTypes
      *
      * @var list<string>
      */
-    private const NEVER = [
+    private const array NEVER = [
         'revision',
         'nav_menu_item',
         'custom_css',
@@ -78,7 +76,7 @@ final class PostTypes
         $types = apply_filters(self::FILTER, $types);
 
         return array_values(array_filter(
-            array_unique(array_map('strval', $types)),
+            array_unique(array_map(strval(...), $types)),
             static fn (string $type): bool => post_type_exists($type) && ! in_array($type, self::NEVER, true),
         ));
     }

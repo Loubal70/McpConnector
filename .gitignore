@@ -14,3 +14,5 @@ languages/*.l10n.php
 
 # PHPUnit result cache.
 /.phpunit.cache/
+# Pollora harness reports
+/.harness/

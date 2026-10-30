@@ -27,10 +27,8 @@ final class ConsentScreen
 {
     /**
      * Nonce action guarding the approval form.
-     *
-     * @var string
      */
-    public const NONCE_ACTION = 'mcp_connector_authorize';
+    public const string NONCE_ACTION = 'mcp_connector_authorize';
 
     /**
      * Render the approval form.

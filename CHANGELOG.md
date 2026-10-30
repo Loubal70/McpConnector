@@ -17,6 +17,12 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
   instructions, no prompts, no resources. Instructions filtered to nothing fall
   back to the default.
 
+### Changed
+
+- The plugin is licensed under the MIT license instead of GPL-2.0-or-later,
+  which stays compatible with WordPress's GPL. Releases up to 1.2.2 keep the
+  license they were published under.
+
 ## 1.2.2
 
 ### Fixed

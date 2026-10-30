@@ -21,10 +21,8 @@ final class AuthorizationCodeRepository
 {
     /**
      * Transient key prefix.
-     *
-     * @var string
      */
-    private const PREFIX = 'mcp_connector_oauth_code_';
+    private const string PREFIX = 'mcp_connector_oauth_code_';
 
     /**
      * How long a code stays valid, in seconds.
@@ -99,7 +97,7 @@ final class AuthorizationCodeRepository
             'client_id' => (string) ($record['client_id'] ?? ''),
             'redirect_uri' => (string) ($record['redirect_uri'] ?? ''),
             'code_challenge' => (string) ($record['code_challenge'] ?? ''),
-            'scopes' => array_values(array_map('strval', (array) ($record['scopes'] ?? []))),
+            'scopes' => array_values(array_map(strval(...), (array) ($record['scopes'] ?? []))),
         ];
     }
 

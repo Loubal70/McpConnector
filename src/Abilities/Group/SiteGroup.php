@@ -31,17 +31,13 @@ final class SiteGroup implements AbilityGroup
 {
     /**
      * Stable group key stored in the settings option.
-     *
-     * @var string
      */
-    public const KEY = 'site';
+    public const string KEY = 'site';
 
     /**
      * Filter through which a site widens the set of writable options.
-     *
-     * @var string
      */
-    public const WRITABLE_OPTIONS_FILTER = 'mcp_connector_writable_options';
+    public const string WRITABLE_OPTIONS_FILTER = 'mcp_connector_writable_options';
 
     /**
      * {@inheritDoc}
@@ -92,7 +88,7 @@ final class SiteGroup implements AbilityGroup
         /** @var list<string> $options */
         $options = apply_filters(self::WRITABLE_OPTIONS_FILTER, ['blogname', 'blogdescription']);
 
-        return array_values(array_unique(array_map('strval', $options)));
+        return array_values(array_unique(array_map(strval(...), $options)));
     }
 
     /**

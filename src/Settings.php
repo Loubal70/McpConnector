@@ -23,17 +23,13 @@ final class Settings
 {
     /**
      * Option name holding the serialised configuration.
-     *
-     * @var string
      */
-    public const OPTION = 'mcp_connector_settings';
+    public const string OPTION = 'mcp_connector_settings';
 
     /**
      * Filter applied to the resolved configuration array.
-     *
-     * @var string
      */
-    public const FILTER = 'mcp_connector_settings';
+    public const string FILTER = 'mcp_connector_settings';
 
     /**
      * Memoised instance for the current request.
@@ -141,15 +137,15 @@ final class Settings
             serverRoute: str_replace('_', '-', $route) ?: 'connector',
             requiredCapability: $capability ?: 'edit_posts',
             enabledGroups: array_values(array_filter(
-                array_map('strval', (array) ($merged['enabled_groups'] ?? [])),
+                array_map(strval(...), (array) ($merged['enabled_groups'] ?? [])),
             )),
             readOnlyMode: (bool) ($merged['read_only_mode'] ?? false),
             externalAbilities: array_values(array_filter(
-                array_map('strval', (array) ($merged['external_abilities'] ?? [])),
+                array_map(strval(...), (array) ($merged['external_abilities'] ?? [])),
             )),
             externalAbilitiesReviewed: (bool) ($merged['external_abilities_reviewed'] ?? false),
             addressablePostTypes: array_values(array_filter(
-                array_map('sanitize_key', array_map('strval', (array) ($merged['addressable_post_types'] ?? []))),
+                array_map(sanitize_key(...), array_map(strval(...), (array) ($merged['addressable_post_types'] ?? []))),
             )),
             postTypesReviewed: (bool) ($merged['post_types_reviewed'] ?? false),
             oauthEnabled: (bool) ($merged['oauth_enabled'] ?? true),

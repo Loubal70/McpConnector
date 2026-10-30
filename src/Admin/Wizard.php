@@ -40,25 +40,21 @@ final class Wizard
      *
      * Registered under Settings and then removed from the menu: the assistant is
      * somewhere you are sent, not somewhere you browse to.
-     *
-     * @var string
      */
-    public const MENU_SLUG = 'mcp-connector-setup';
+    public const string MENU_SLUG = 'mcp-connector-setup';
 
     /**
      * Body class marking the screen, so the stylesheet can hide what is left of
      * wp-admin around it.
-     *
-     * @var string
      */
-    public const BODY_CLASS = 'mcpc-setup-screen';
+    public const string BODY_CLASS = 'mcpc-setup-screen';
 
     /**
      * The steps, in order.
      *
      * @var list<string>
      */
-    private const STEPS = ['check', 'expose', 'connect', 'verify'];
+    private const array STEPS = ['check', 'expose', 'connect', 'verify'];
 
     /**
      * @param Settings                                                                      $settings The current configuration.
